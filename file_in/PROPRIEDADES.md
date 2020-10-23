@@ -1,0 +1,10 @@
+IndexacaoHorizontal = FALSE
+NumCaixas = 0
+PickOp = 0
+ConfGarraOp = 0
+FechaGarraOp = 0
+AbreGarraOp = 0
+SkipGoHome = FALSE
+SkipSobeRelativo = FALSE
+SensoresCaixa = 123456
+TravaGarra = False
