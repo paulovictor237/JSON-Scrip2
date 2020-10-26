@@ -1,0 +1,10 @@
+﻿  main.cpp
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(138,30): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(169,45): warning C4244: 'argumento': conversão de 'double' para '_Ty', possível perda de dados
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(252,36): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(253,46): warning C4267: '=': conversão de 'size_t' para 'int', possível perda de dados
+  JSON-Scrip2.vcxproj -> C:\Users\paulo.duarte\source\repos\JSON-Scrip2\x64\Debug\JSON-Scrip2.exe

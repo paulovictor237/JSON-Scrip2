@@ -1,0 +1,2 @@
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\x64\Debug\JSON-Scrip2.exe
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\x64\Debug\JSON-Scrip2.pdb

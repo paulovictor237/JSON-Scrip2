@@ -33,6 +33,9 @@ void simulacao_maker(std::ofstream &simulacao_src,std::ofstream &simulacao_dat,i
     //App1
     XApp1Place=XApp2Place;
     XApp1Place.Z+=receita.AlturaCaixa/2+app.Y;
+    simulacao_src << endl;
+    simulacao_src << "add()"<< endl;
+    simulacao_src << "NumCaixas = " << outt.NumCaixas << endl;
     simulacao_src << "pick()"<< endl;
     i++;
     simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,false,pallet);

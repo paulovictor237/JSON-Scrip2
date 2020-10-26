@@ -11,6 +11,34 @@ using namespace std;
 
 #include "comum.h"
 
+bool Pose::operator==(const Pose &rhs) const { return this->X == rhs.X;}
+
+void Receita::NumCaixasIndex(void)
+{
+  std::vector<Pose> aux_1;
+  int inicio=0,fim=0,k=0,j=0,i=0,contador=0;
+  int size_vector=all_poses.size();
+  double aux2=0;
+  for(int i=0;i<Layers;i++)
+  {
+    while(fim!=PlacesCamada*(i+1)){
+      if (fim>=size_vector)break;
+      inicio=fim;
+      aux2 = all_poses[fim].Y;
+      contador=0;
+      while((aux2 == all_poses[fim].Y)){
+        contador++;
+        fim++;
+        if (fim>=size_vector)break;
+        if (all_poses[fim].A!=0.0)break;
+      }
+      all_poses[inicio].NumCaixas=contador;
+      aux_1.push_back(all_poses[inicio]);
+    }
+  }
+  all_poses=aux_1;
+}
+
 void Receita::inverte_coluna(void)
 {
   std::vector<Pose> aux_1;
@@ -203,6 +231,7 @@ std::ostream &operator<<(std::ostream &os, Pose const &m)
   os << ", A " << m.A;
   os << ", B " << m.B;
   os << ", C " << m.C;
+  os << ", NumCaixas " << m.NumCaixas;
   os << " }";
   return os;
 }
@@ -222,6 +251,7 @@ std::ostream &operator<<(std::ostream &os, Receita const &m)
 {
   os << "# >> RECEITA <<\n"<< endl;
   os << "nome: " << m.nome << endl;
+  os << "maxGrip: " << m.maxGrip << endl;
   os << "PlacesCamada: " << m.PlacesCamada << endl;
   os << "AlturaCaixa: " << m.AlturaCaixa << endl;
   os << "Camadas: " << m.Camadas << endl;
