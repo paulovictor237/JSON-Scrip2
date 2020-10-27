@@ -12,8 +12,17 @@ using namespace std;
 #include "comum.h"
 #include "simulacao.h"
 
-void simulacao_maker(std::ofstream &simulacao_src,std::ofstream &simulacao_dat,int pallet,class Receita receita,class Pose app)
+int simulacao_maker(int pallet,class Receita receita,class Pose app)
 {
+  std::ofstream simulacao_src("simulacao/simulacao.src",std::ofstream::out);
+  std::ofstream simulacao_dat("simulacao/simulacao.dat",std::ofstream::out);
+  if( !simulacao_src || !simulacao_dat)
+  {
+    std::cout << "Erro ao abrir os arquivos simulacao.\n";
+    std::system("pause");
+    return 0;
+  }
+  init_files(simulacao_src,simulacao_dat,"simulacao");
   class Pose XApp1Place,XApp2Place,XPlace;
   int i=0,j=0,Layers=0;
   for (auto &outt : receita.all_poses)
@@ -45,7 +54,10 @@ void simulacao_maker(std::ofstream &simulacao_src,std::ofstream &simulacao_dat,i
     simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,false,pallet);
     simulacao_src << "place()"<< endl;
   }
-  return;
+  end_files(simulacao_src,simulacao_dat);
+  simulacao_src.close();
+  simulacao_dat.close();
+  return 0;
 }
 
 void simulacao_ponto(std::ofstream &src,std::ofstream &dat,int i,class Pose pose,bool type,int Pallet)

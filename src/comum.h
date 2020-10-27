@@ -30,7 +30,6 @@ public:
   void NumCaixasIndex(void);
   void inverte_linha(void);
   void inverte_coluna(void);
-  void imprime(std::ofstream &ofs);
   friend std::ostream &operator<<(std::ostream &os, Receita const &m);
 };
 

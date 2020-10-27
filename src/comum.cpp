@@ -191,33 +191,6 @@ std::string Pose::kuka(void)
   return aux.str();
 }
 
-void Receita::imprime(std::ofstream &ofs)
-{
-  std::stringstream aux;
-  ofs<<";FOLD Produto "    << nome << endl;
-
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.X=0"<< endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.Y=0"<< endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.Z=0"<< endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.A=0"<< endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.B=0"<< endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].OffsetProduto.C=0"<< endl;
-
-  ofs<<"  StrReceita[Prdt_"<< nome << "].AlturaCaixa="<<AlturaCaixa << endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].PlacesCamada=" << PlacesCamada << endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].Layers="<< Layers << endl;
-  ofs<<"  StrReceita[Prdt_"<< nome << "].Camadas="<< Camadas << endl;
-
-  int i=1;
-  for (auto &outt : LayersVector)
-  {
-    ofs<<"  StrReceitaLayer[Prdt_"<< nome <<","<<i<<"]="<< outt << endl;
-    i++;
-  }
-  ofs<<";ENDFOLD\n" << endl;
-  
-  return;
-}
 bool buscar_chave(std::string entrada,std::string chave)
 {
   return entrada.find(chave) !=std::string::npos;

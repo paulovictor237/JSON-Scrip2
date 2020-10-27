@@ -24,7 +24,8 @@ using namespace std;
 
 #include "comum.h"
 #include "simulacao.h"
-#include "matriz_pontos.h"
+#include "kuka.h"
+//#include "universal_robot.h"
 
 int main(int argc, char **argv)
 {
@@ -198,41 +199,6 @@ int main(int argc, char **argv)
     }
   }
 //+------------------------------------------------------------<< 
-  //abre os arquivos
-  std::ofstream simulacao_src("simulacao/simulacao.src",std::ofstream::out);
-  std::ofstream simulacao_dat("simulacao/simulacao.dat",std::ofstream::out);
-  if( !simulacao_src || !simulacao_dat)
-  {
-    std::cout << "Erro ao abrir os arquivos simulacao.\n";
-    std::system("pause");
-    return 0;
-  }
-
-  std::ofstream TReceita_src("file_out/INIT/TReceita.src",std::ofstream::out);
-  std::ofstream TReceita_dat("file_out/INIT/TReceita.dat",std::ofstream::out);
-  if( !TReceita_src  || !TReceita_dat){std::cout << "Erro ao abrir os arquivos TReceita.\n";return 0;}
-  if( !TReceita_dat )
-  {
-    std::cout << "Erro ao abrir os arquivos TReceita.\n";
-    std::system("pause");
-    return 0;
-  }
-
-  std::ofstream TMatriz_src ("file_out/INIT/TMatriz.src", std::ofstream::out);
-  std::ofstream TMatriz_dat ("file_out/INIT/TMatriz.dat", std::ofstream::out);
-  if( !TMatriz_src || !TMatriz_dat )
-  {
-    std::cout << "Erro ao abrir os arquivos TMatriz.\n";
-    std::system("pause");
-    ;return 0;
-  }
-
-  init_files(simulacao_src,simulacao_dat,"simulacao");
-  init_files(TReceita_src,TReceita_dat,"TReceita");
-  init_files(TMatriz_src,TMatriz_dat,"TMatriz");
-  //padrao_move(simulacao_src);
-
-//+------------------------------------------------------------<< 
   std::cout << "$ >> GERANDO RECEITA AGUARDE << $\n"<<endl;
   std::cout << "Relatorio sera gerado em [ relatorio/Relatorio.md ]"<<endl;
   std::cout << "\n-----------------------------\n" << endl;
@@ -253,23 +219,13 @@ int main(int argc, char **argv)
   receita.Camadas=receita.LayersVector.size();
   receita.Layers=NumLayers;
   //receita.NumCaixasIndex();
-  receita.imprime(TReceita_src);
   receita.quadrante_vector(quadrante);
   std::cout << receita << endl;
 //+------------------------------------------------------------<< 
   // distribui as informações aos arquivos 
-  matriz_maker(TMatriz_src,TMatriz_dat,pallet,receita,app);
-  simulacao_maker(simulacao_src,simulacao_dat,pallet,receita,app);
+  kuka_maker(pallet,receita,app);
+  simulacao_maker(pallet,receita,app);
 //+------------------------------------------------------------<< 
-  end_files(simulacao_src,simulacao_dat);
-  end_files(TReceita_src,TReceita_dat);
-  end_files(TMatriz_src,TMatriz_dat);
-  simulacao_src.close();
-  simulacao_dat.close();
-  TReceita_src.close();
-  TReceita_dat.close();
-  TMatriz_src.close();
-  TMatriz_dat.close();
   file_in.close();
   //Relatorio.close();
   std::cout << "# $ >> FIM << $"<<endl;

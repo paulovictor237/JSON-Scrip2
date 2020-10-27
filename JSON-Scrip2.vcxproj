@@ -140,13 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\comum.cpp" />
+    <ClCompile Include="src\kuka.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\matriz_pontos.cpp" />
     <ClCompile Include="src\simulacao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\comum.h" />
-    <ClInclude Include="src\matriz_pontos.h" />
+    <ClInclude Include="src\kuka.h" />
     <ClInclude Include="src\simulacao.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
