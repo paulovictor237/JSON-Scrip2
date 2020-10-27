@@ -7,7 +7,7 @@ DEF TReceita()
   StrReceita[Prdt_teste2].OffsetProduto.B=0
   StrReceita[Prdt_teste2].OffsetProduto.C=0
   StrReceita[Prdt_teste2].AlturaCaixa=200
-  StrReceita[Prdt_teste2].PlacesCamada=11
+  StrReceita[Prdt_teste2].PlacesCamada=12
   StrReceita[Prdt_teste2].Layers=2
   StrReceita[Prdt_teste2].Camadas=5
   StrReceitaLayer[Prdt_teste2,1]=1

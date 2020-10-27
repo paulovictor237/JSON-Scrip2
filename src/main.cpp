@@ -25,7 +25,7 @@ using namespace std;
 #include "comum.h"
 #include "simulacao.h"
 #include "kuka.h"
-//#include "universal_robot.h"
+#include "universal_robot.h"
 
 int main(int argc, char **argv)
 {
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
   std::cout << "Digite o valor do Pallet [1..20]" << endl;
   cin  >> system_in;
   pallet = system_in;
-  if(pallet<1||pallet>20){
+  if(pallet<0||pallet>20){
     cout << "valor invalido de pallet" << endl;
     std::system("pause");
     return 0;
@@ -213,6 +213,7 @@ int main(int argc, char **argv)
   std::cout << "\n-----------------------------\n" << endl;
 //+------------------------------------------------------------<< 
   //preenche a receita
+  receita.quadrante=quadrante;
   receita.FinalContador=NumPontos;
   receita.PlacesCamada=NumPontos/NumLayers;
   receita.AlturaCaixa=receita.Caixa.height;
@@ -224,7 +225,10 @@ int main(int argc, char **argv)
 //+------------------------------------------------------------<< 
   // distribui as informações aos arquivos 
   kuka_maker(pallet,receita,app);
-  simulacao_maker(pallet,receita,app);
+  simulacao_maker(pallet,receita,app,"kuka");
+  ur_altera_pontos(receita);
+  ur_maker(pallet,receita,app);
+  simulacao_maker(pallet,receita,app,"universal_robot");
 //+------------------------------------------------------------<< 
   file_in.close();
   //Relatorio.close();

@@ -4,9 +4,8 @@
 class Pose{
 public:
     double X=0,Y=0,Z=0,A=0,B=0,C=0;
-    int NumCaixas=1;
+    int NumCaixas=1,pick_ur=1;
 public:
-    std::string kuka(void);
     bool operator==(const Pose &rhs) const;
     friend std::ostream &operator<<(std::ostream &os, Pose const &m);
 };
@@ -21,7 +20,8 @@ public:
 class Receita{
 public:
   std::string nome;
-  int PlacesCamada=0,AlturaCaixa=0,Camadas=0,Layers=0,FinalContador=0,maxGrip=0;;
+  int PlacesCamada=0,AlturaCaixa=0,Camadas=0,Layers=0,FinalContador=0,maxGrip=0;
+  int quadrante=4;
   class Objeto Pallet,Caixa;
   std::vector<Pose> all_poses;
   std::vector <int> LayersVector;
@@ -30,6 +30,7 @@ public:
   void NumCaixasIndex(void);
   void inverte_linha(void);
   void inverte_coluna(void);
+  void inverte_tudo(void);
   friend std::ostream &operator<<(std::ostream &os, Receita const &m);
 };
 

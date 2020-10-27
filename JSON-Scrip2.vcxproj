@@ -143,11 +143,13 @@
     <ClCompile Include="src\kuka.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\simulacao.cpp" />
+    <ClCompile Include="src\universal_robot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\comum.h" />
     <ClInclude Include="src\kuka.h" />
     <ClInclude Include="src\simulacao.h" />
+    <ClInclude Include="src\universal_robot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

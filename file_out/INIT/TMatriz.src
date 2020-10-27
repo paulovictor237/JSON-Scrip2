@@ -1,6 +1,6 @@
 DEF TMatriz()
 ;FOLD Pallet 1 - Produto teste2
-;FOLD LAYER 1: PLACE 1 ate 11
+;FOLD LAYER 1: PLACE 1 ate 12
 ;FOLD PLACE 1
 ;FOLD PROPRIEDADES 
 MatrizPontos[Pallet_1,Prdt_teste2,1].IndexacaoHorizontal = FALSE
@@ -287,8 +287,6 @@ MatrizPontos[Pallet_1,Prdt_teste2,11].OffsetPlace.C=0
 
 ;ENDFOLD
 
-;ENDFOLD
-;FOLD LAYER 2: PLACE 12 ate 22
 ;FOLD PLACE 12
 ;FOLD PROPRIEDADES 
 MatrizPontos[Pallet_1,Prdt_teste2,12].IndexacaoHorizontal = FALSE
@@ -315,6 +313,8 @@ MatrizPontos[Pallet_1,Prdt_teste2,12].OffsetPlace.C=0
 
 ;ENDFOLD
 
+;ENDFOLD
+;FOLD LAYER 2: PLACE 13 ate 24
 ;FOLD PLACE 13
 ;FOLD PROPRIEDADES 
 MatrizPontos[Pallet_1,Prdt_teste2,13].IndexacaoHorizontal = FALSE
@@ -571,6 +571,58 @@ MatrizPontos[Pallet_1,Prdt_teste2,22].OffsetPlace.Z=0
 MatrizPontos[Pallet_1,Prdt_teste2,22].OffsetPlace.A=0
 MatrizPontos[Pallet_1,Prdt_teste2,22].OffsetPlace.B=0
 MatrizPontos[Pallet_1,Prdt_teste2,22].OffsetPlace.C=0
+;ENDFOLD
+
+;ENDFOLD
+
+;FOLD PLACE 23
+;FOLD PROPRIEDADES 
+MatrizPontos[Pallet_1,Prdt_teste2,23].IndexacaoHorizontal = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,23].NumCaixas = 0
+MatrizPontos[Pallet_1,Prdt_teste2,23].PickOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,23].ConfGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,23].FechaGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,23].AbreGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,23].SkipGoHome = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,23].SkipSobeRelativo = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,23].SensoresCaixa = 123456
+MatrizPontos[Pallet_1,Prdt_teste2,23].XApp1Place=P1_teste2_23_App1
+MatrizPontos[Pallet_1,Prdt_teste2,23].XApp2Place=P1_teste2_23_App2
+MatrizPontos[Pallet_1,Prdt_teste2,23].XPlace=P1_teste2_23_Place
+;ENDFOLD
+;FOLD OffsetPlace 
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.X=0
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.Y=0
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.Z=0
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.A=0
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.B=0
+MatrizPontos[Pallet_1,Prdt_teste2,23].OffsetPlace.C=0
+;ENDFOLD
+
+;ENDFOLD
+
+;FOLD PLACE 24
+;FOLD PROPRIEDADES 
+MatrizPontos[Pallet_1,Prdt_teste2,24].IndexacaoHorizontal = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,24].NumCaixas = 0
+MatrizPontos[Pallet_1,Prdt_teste2,24].PickOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,24].ConfGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,24].FechaGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,24].AbreGarraOp = 0
+MatrizPontos[Pallet_1,Prdt_teste2,24].SkipGoHome = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,24].SkipSobeRelativo = FALSE
+MatrizPontos[Pallet_1,Prdt_teste2,24].SensoresCaixa = 123456
+MatrizPontos[Pallet_1,Prdt_teste2,24].XApp1Place=P1_teste2_24_App1
+MatrizPontos[Pallet_1,Prdt_teste2,24].XApp2Place=P1_teste2_24_App2
+MatrizPontos[Pallet_1,Prdt_teste2,24].XPlace=P1_teste2_24_Place
+;ENDFOLD
+;FOLD OffsetPlace 
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.X=0
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.Y=0
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.Z=0
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.A=0
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.B=0
+MatrizPontos[Pallet_1,Prdt_teste2,24].OffsetPlace.C=0
 ;ENDFOLD
 
 ;ENDFOLD

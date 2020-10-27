@@ -39,6 +39,16 @@ void Receita::NumCaixasIndex(void)
   all_poses=aux_1;
 }
 
+void Receita::inverte_tudo(void)
+{
+  std::vector<Pose> aux_3;
+    for (auto &outt : all_poses){
+      //aux_3.push_back(outt);
+      aux_3.insert(aux_3.begin(),outt);
+    }
+  all_poses=aux_3;
+}
+
 void Receita::inverte_coluna(void)
 {
   std::vector<Pose> aux_1;
@@ -110,8 +120,9 @@ void Receita::quadrante_vector(int quadrante)
 {
   switch (quadrante){
     case 1:
-      inverte_linha();
-      inverte_coluna();
+      //inverte_linha();
+      //inverte_coluna();
+      inverte_tudo();
       break;
     case 2:
       inverte_linha();
@@ -184,13 +195,6 @@ void end_files(std::ofstream &src,std::ofstream &dat)
   return;
 }
 
-std::string Pose::kuka(void)
-{
-  std::stringstream aux;
-  aux << "{X " << X << ",Y " << Y << ",Z " << Z << ",A " << A << ",B 0,C 180,S 2,T 2}";
-  return aux.str();
-}
-
 bool buscar_chave(std::string entrada,std::string chave)
 {
   return entrada.find(chave) !=std::string::npos;
@@ -230,6 +234,7 @@ std::ostream &operator<<(std::ostream &os, Receita const &m)
   os << "Camadas: " << m.Camadas << endl;
   os << "Layers: " << m.Layers << endl;
   os << "FinalContador: " << m.FinalContador << endl;
+  os << "quadrante: " << m.quadrante << endl;
   os << "\n**Caixa**\n" << m.Caixa << endl;
   os << "\n**Pallet**\n" << m.Pallet << endl;
   os << "\n**LayersVector**\n";

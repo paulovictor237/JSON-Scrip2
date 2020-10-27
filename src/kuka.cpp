@@ -12,6 +12,13 @@ using namespace std;
 #include "comum.h"
 # include "kuka.h"
 
+std::string kuka_pose(class Pose pose)
+{
+  std::stringstream aux;
+  aux << "{X " << pose.X << ",Y " << pose.Y << ",Z " << pose.Z << ",A " << pose.A << ",B 0,C 180,S 2,T 2}";
+  return aux.str();
+}
+
 void kuka_imprime(std::ofstream &ofs,class Receita receita)
 {
   std::stringstream aux;
@@ -87,10 +94,6 @@ int kuka_maker(int pallet,class Receita receita,class Pose app)
   kuka_imprime(TReceita_src,receita);
 //+------------------------------------------------------------<< 
   int layer=1;
-  int inicial=1;
-  int final=1;
-  int FinalContador=receita.FinalContador;
-
   int contador=1;
   // Receita -> int PlacesCamada=0,AlturaCaixa=0,Camadas=0,Layers=0;
   //abre fold da receita
@@ -182,9 +185,9 @@ void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,int pal
 
   //+-------------------------- DAT --------------------------+<<   
   TMatriz_dat<<";FOLD PLACE " << NumPlace << endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<"="<<XApp1Place.kuka()<<endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<"="<<XApp2Place.kuka()<<endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<"="<<XPlace.kuka()<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<"="<<kuka_pose(XApp1Place)<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<"="<<kuka_pose(XApp2Place)<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<"="<<kuka_pose(XPlace)<<endl;
   TMatriz_dat<<";ENDFOLD\n" << endl; 
 
   return;

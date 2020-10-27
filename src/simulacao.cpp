@@ -12,10 +12,10 @@ using namespace std;
 #include "comum.h"
 #include "simulacao.h"
 
-int simulacao_maker(int pallet,class Receita receita,class Pose app)
+int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
 {
-  std::ofstream simulacao_src("simulacao/simulacao.src",std::ofstream::out);
-  std::ofstream simulacao_dat("simulacao/simulacao.dat",std::ofstream::out);
+  std::ofstream simulacao_src("simulacao/"+name+".src",std::ofstream::out);
+  std::ofstream simulacao_dat("simulacao/"+name+".dat",std::ofstream::out);
   if( !simulacao_src || !simulacao_dat)
   {
     std::cout << "Erro ao abrir os arquivos simulacao.\n";
@@ -43,15 +43,21 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app)
     XApp1Place=XApp2Place;
     XApp1Place.Z+=receita.AlturaCaixa/2+app.Y;
     simulacao_src << endl;
+    simulacao_src << ";FOLD ; ## PontoPlace ["<<j<<"] ##;%{PE}%R 8.5.16,%MKUKATPBASIS,\%CCOMMENT,%VNORMAL,%P 2: ## PontoPlace ["<<j<<"] ## \n;ENDFOLD" << endl;
     simulacao_src << "add()"<< endl;
     simulacao_src << "NumCaixas = " << outt.NumCaixas << endl;
-    simulacao_src << "pick()"<< endl;
+    simulacao_src << "pick"<<outt.pick_ur<<"()"<< endl;
+    if(name=="universal_robot")
+    {
+      simulacao_src << "app_pallet"<<pallet<<"()"<< endl;
+      simulacao_src << "pick()"<< endl;
+    }
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,false,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,pallet);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,false,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,pallet);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,false,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,pallet);
     simulacao_src << "place()"<< endl;
   }
   end_files(simulacao_src,simulacao_dat);
@@ -60,23 +66,27 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app)
   return 0;
 }
 
-void simulacao_ponto(std::ofstream &src,std::ofstream &dat,int i,class Pose pose,bool type,int Pallet)
+void simulacao_ponto(std::ofstream &src,std::ofstream &dat,int i,class Pose pose,int Pallet)
 {
-  if(type)
-  {
-    src << ";FOLD PTP P"<<i<<" CONT Vel= 100 %  PDATP3 Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
-  }else{
-    src << ";FOLD LIN P"<<i<<" CONT Vel= 2 m/s CPDATP3 Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
-  }
+
+  src << ";FOLD LIN P"<<i<<" CONT Vel= 2 m/s CPDATP3 Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
   src << ";FOLD Parameters ;%{h}"<< endl;
-  if(type)
-  {
-    src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P"<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=PDATP3; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP" << endl;
-  }else{
-    src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P"<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDATP3; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN" << endl;
-  }
+  src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P"<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDATP3; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN" << endl;
   src << ";ENDFOLD"<< endl;
-  src << (type?"PTP":"LIN") <<" XP"<<i<< endl;
+
+  src << "$BWDSTART = FALSE"<< endl;
+
+  src << "LDAT_ACT=LCPDATP"<<i<< endl;
+  dat << "DECL LDAT LCPDATP"<<i<<"={VEL 1,ACC 100,APO_DIST 10,APO_FAC 50.0,ORI_TYP #VAR,CIRC_TYP #BASE,JERK_FAC 50.0}" << endl;
+
+  src << "FDAT_ACT=FP"<<i<< endl;
+  dat << "DECL FDAT FP"<<i<<"={TOOL_NO 1,BASE_NO "<<Pallet<<",IPO_FRAME #BASE,POINT2[] \" \",TQ_STATE FALSE}" << endl;
+
+  src << "BAS (#CP_PARAMS,2)"<< endl;
+  
+  src << "SET_CD_PARAMS (0)"<< endl;
+
+  src << "LIN" <<" XP"<<i<< endl;
   src << ";ENDFOLD"<< endl;
 
   dat << "DECL E6POS XP"<<i<<"={X "<<pose.X<<",Y "<<pose.Y<<",Z "<<pose.Z<<",A "<<pose.A<<",B "<<pose.B<<",C 180,S 2,T 2}" << endl;
