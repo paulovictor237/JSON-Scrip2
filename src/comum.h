@@ -4,7 +4,7 @@
 class Pose{
 public:
     double X=0,Y=0,Z=0,A=0,B=0,C=0;
-    int NumCaixas=1,pick_ur=1;
+    int NumCaixas=1,pick_ur=1,AppPalete=1;
 public:
     bool operator==(const Pose &rhs) const;
     friend std::ostream &operator<<(std::ostream &os, Pose const &m);
@@ -37,6 +37,7 @@ public:
 std::string split_string(std::string tokenString,std::string delim,int saida);
 vector<string> split_string(std::string tokenString,std::string delim);
 void imprime_vetor(vector<string> tokens);
+void app_quadrante(class Pose &app,int quadrante);
 
 double valor(std::string entrada,int retorno);
 bool buscar_chave(std::string entrada,std::string chave);

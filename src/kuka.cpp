@@ -70,8 +70,8 @@ int kuka_maker(int pallet,class Receita receita,class Pose app)
 {
 //+------------------------------------------------------------<< 
   //abre os arquivos
-  std::ofstream TReceita_src("file_out/INIT/TReceita.src",std::ofstream::out);
-  std::ofstream TReceita_dat("file_out/INIT/TReceita.dat",std::ofstream::out);
+  std::ofstream TReceita_src("file_out/KUKA/INIT/TReceita.src",std::ofstream::out);
+  std::ofstream TReceita_dat("file_out/KUKA/INIT/TReceita.dat",std::ofstream::out);
   if( !TReceita_src  || !TReceita_dat){std::cout << "Erro ao abrir os arquivos TReceita.\n";return 0;}
   if( !TReceita_dat )
   {
@@ -80,8 +80,8 @@ int kuka_maker(int pallet,class Receita receita,class Pose app)
     return 0;
   }
 
-  std::ofstream TMatriz_src ("file_out/INIT/TMatriz.src", std::ofstream::out);
-  std::ofstream TMatriz_dat ("file_out/INIT/TMatriz.dat", std::ofstream::out);
+  std::ofstream TMatriz_src ("file_out/KUKA/INIT/TMatriz.src", std::ofstream::out);
+  std::ofstream TMatriz_dat ("file_out/KUKA/INIT/TMatriz.dat", std::ofstream::out);
   if( !TMatriz_src || !TMatriz_dat )
   {
     std::cout << "Erro ao abrir os arquivos TMatriz.\n";

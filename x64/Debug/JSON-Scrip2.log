@@ -1,3 +1,3 @@
-﻿  universal_robot.cpp
-C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\universal_robot.cpp(124): warning C4715: 'ur_maker': nem todos os caminhos de controle retornam um valor
+﻿  simulacao.cpp
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\simulacao.cpp(46,52): warning C4129: '%': sequência de escape de caractere não reconhecida
   JSON-Scrip2.vcxproj -> C:\Users\paulo.duarte\source\repos\JSON-Scrip2\x64\Debug\JSON-Scrip2.exe

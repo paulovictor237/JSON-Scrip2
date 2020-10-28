@@ -1,0 +1,173 @@
+# LAYER 1: PLACE 1 ate 11
+def P1L1(caixa):
+  # PLACE 1
+  if(caixa==1):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.55, 0.24, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.55, 0.24, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.61, 0.18, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 2
+  elif(caixa==2):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.34, 0.24, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.34, 0.24, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.4, 0.18, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 3
+  elif(caixa==3):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.13, 0.24, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.13, 0.24, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.19, 0.18, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 4
+  elif(caixa==4):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.5, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.5, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.44, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 5
+  elif(caixa==5):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.5, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.5, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.44, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 6
+  elif(caixa==6):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.71, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.71, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.65, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 7
+  elif(caixa==7):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.71, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.71, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.65, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 8
+  elif(caixa==8):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.92, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.92, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.86, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 9
+  elif(caixa==9):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.92, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.92, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.86, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 10
+  elif(caixa==10):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 1.13, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 1.13, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 1.07, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 11
+  elif(caixa==11):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 1.13, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 1.13, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 1.07, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+
+end
+
+sync()
+
+end #P1L1
+
+
+# LAYER 2: PLACE 1 ate 11
+def P1L2(caixa):
+  # PLACE 1
+  if(caixa==1):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.19, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.19, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.13, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 2
+  elif(caixa==2):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.19, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.19, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.13, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 3
+  elif(caixa==3):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.4, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.4, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.34, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 4
+  elif(caixa==4):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.4, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.4, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.34, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 5
+  elif(caixa==5):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.61, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.61, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.55, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 6
+  elif(caixa==6):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.61, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.61, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.55, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 7
+  elif(caixa==7):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.82, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.5, 0.82, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.56, 0.76, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 8
+  elif(caixa==8):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.82, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.18, 0.82, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.24, 0.76, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 9
+  elif(caixa==9):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.55, 1.08, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.55, 1.08, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.61, 1.02, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 10
+  elif(caixa==10):
+  App1Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.34, 1.08, 0.5, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.34, 1.08, 0.3, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.4, 1.02, 0.2, 2.221352, 2.221606, 3.14159]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+  # PLACE 11
+  elif(caixa==11):
+  App2Palete1() #subroutine call
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.13, 1.08, 0.5, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=100.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.13, 1.08, 0.3, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=50.0)
+  movel(pose_trans(p[pallet1_dx/1000.0,pallet1_dy/1000.0,delta_z/1000.0,d2r(pallet1_rx),d2r(pallet1_ry),d2r(pallet1_rz)],p[0.19, 1.02, 0.2, 2.221352, 2.221606, 6.28319]),a=acc,v=vel,r=0.0)
+  Deposita() #subroutine call
+
+end
+
+sync()
+
+end #P1L2
+

@@ -46,18 +46,18 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
     simulacao_src << ";FOLD ; ## PontoPlace ["<<j<<"] ##;%{PE}%R 8.5.16,%MKUKATPBASIS,\%CCOMMENT,%VNORMAL,%P 2: ## PontoPlace ["<<j<<"] ## \n;ENDFOLD" << endl;
     simulacao_src << "add()"<< endl;
     simulacao_src << "NumCaixas = " << outt.NumCaixas << endl;
-    simulacao_src << "pick"<<outt.pick_ur<<"()"<< endl;
+    simulacao_src << "pick()"<< endl;
     if(name=="universal_robot")
     {
-      simulacao_src << "app_pallet"<<pallet<<"()"<< endl;
-      simulacao_src << "pick()"<< endl;
+      simulacao_src << "pick"<<outt.pick_ur<<"()"<< endl;
+      simulacao_src << "App"<<outt.AppPalete<<"Palete"<<pallet<<"()"<< endl;
     }
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,pallet,false);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,pallet,false);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,pallet);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,pallet,false);
     simulacao_src << "place()"<< endl;
   }
   end_files(simulacao_src,simulacao_dat);
@@ -66,30 +66,50 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
   return 0;
 }
 
-void simulacao_ponto(std::ofstream &src,std::ofstream &dat,int i,class Pose pose,int Pallet)
+void simulacao_ponto(std::ofstream &src,std::ofstream &dat,int i,class Pose pose,int Pallet,bool type)
 {
+  if(type==false)
+  {
+    src << ";FOLD LIN P"<<i<<" CONT Vel= 2 m/s CPDATP"<<i<<"Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
+    src << ";FOLD Parameters ;%{h}"<< endl;
+    src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P"<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDATP"<<i<<"; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN" << endl;
+    src << ";ENDFOLD"<< endl;
 
-  src << ";FOLD LIN P"<<i<<" CONT Vel= 2 m/s CPDATP3 Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
-  src << ";FOLD Parameters ;%{h}"<< endl;
-  src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName=P"<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataName=CPDATP3; Kuka.VelocityPath=2; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=LIN" << endl;
-  src << ";ENDFOLD"<< endl;
+    src << "$BWDSTART = FALSE"<< endl;
+    src << "LDAT_ACT=LCPDATP"<<i<< endl;
+    src << "FDAT_ACT=FP"<<i<< endl;
+    src << "BAS (#CP_PARAMS,2)"<< endl;
+    src << "SET_CD_PARAMS (0)"<< endl;
+    src << "LIN" <<" XP"<<i<< endl;
+    src << ";ENDFOLD"<< endl;
 
-  src << "$BWDSTART = FALSE"<< endl;
+    dat << "DECL LDAT LCPDATP"<<i<<"={VEL 1,ACC 100,APO_DIST 10,APO_FAC 50.0,ORI_TYP #VAR,CIRC_TYP #BASE,JERK_FAC 50.0}" << endl;
+    dat << "DECL FDAT FP"<<i<<"={TOOL_NO 1,BASE_NO "<<Pallet<<",IPO_FRAME #BASE,POINT2[] \" \",TQ_STATE FALSE}" << endl;
+    dat << "DECL E6POS XP"<<i<<"={X "<<pose.X<<",Y "<<pose.Y<<",Z "<<pose.Z<<",A "<<pose.A<<",B "<<pose.B<<",C 180,S 2,T 2}" << endl;
 
-  src << "LDAT_ACT=LCPDATP"<<i<< endl;
-  dat << "DECL LDAT LCPDATP"<<i<<"={VEL 1,ACC 100,APO_DIST 10,APO_FAC 50.0,ORI_TYP #VAR,CIRC_TYP #BASE,JERK_FAC 50.0}" << endl;
 
-  src << "FDAT_ACT=FP"<<i<< endl;
-  dat << "DECL FDAT FP"<<i<<"={TOOL_NO 1,BASE_NO "<<Pallet<<",IPO_FRAME #BASE,POINT2[] \" \",TQ_STATE FALSE}" << endl;
+  }
+  else
+  {
+    src << ";FOLD PTP P"<<i<<" CONT Vel= 100 % PDATP"<<i<<"Tool[1] Base["<<Pallet<<"]   ;%{PE}" << endl;
 
-  src << "BAS (#CP_PARAMS,2)"<< endl;
-  
-  src << "SET_CD_PARAMS (0)"<< endl;
+    src << ";FOLD Parameters ;%{h}"<< endl;
+    src << ";Params IlfProvider=kukaroboter.basistech.inlineforms.movement.old; Kuka.IsGlobalPoint=False; Kuka.PointName="<<i<<"; Kuka.BlendingEnabled=True; Kuka.MoveDataPtpName=PDATP"<<i<<"; Kuka.VelocityPtp=100; Kuka.CurrentCDSetIndex=0; Kuka.MovementParameterFieldEnabled=True; IlfCommand=PTP"<< endl;
+    src << ";ENDFOLD"<< endl;
 
-  src << "LIN" <<" XP"<<i<< endl;
-  src << ";ENDFOLD"<< endl;
+    src << "$BWDSTART = FALSE"<< endl;
+    src << "PDAT_ACT=PPDATP"<<i<< endl;
+    src << "FDAT_ACT=FP"<<i<< endl;
+    src << "BAS (#PTP_PARAMS,100)"<< endl;
+    src << "SET_CD_PARAMS (0)"<< endl;
+    src << "PTP XP"<<i<<" C_DIS"<< endl;
+    src << ";ENDFOLD"<< endl;
 
-  dat << "DECL E6POS XP"<<i<<"={X "<<pose.X<<",Y "<<pose.Y<<",Z "<<pose.Z<<",A "<<pose.A<<",B "<<pose.B<<",C 180,S 2,T 2}" << endl;
+    dat << "DECL PDAT PPDATP"<<i<<"={VEL 100,ACC 100,APO_DIST 100,APO_MODE #CDIS,GEAR_JERK 100.000,EXAX_IGN 0}" << endl;
+    dat << "DECL FDAT FP"<<i<<"={TOOL_NO 1,BASE_NO "<<Pallet<<",IPO_FRAME #BASE,POINT2[] \" \",TQ_STATE FALSE}"<< endl;
+    dat << "DECL E6POS XP"<<i<<"={X "<<pose.X<<",Y "<<pose.Y<<",Z "<<pose.Z<<",A "<<pose.A<<",B "<<pose.B<<",C 180,S 2,T 2}" << endl;
+
+  }
 }
 
 void padrao_move(std::ofstream &out)

@@ -13,6 +13,34 @@ using namespace std;
 
 bool Pose::operator==(const Pose &rhs) const { return this->X == rhs.X;}
 
+void app_quadrante(class Pose &app,int quadrante)
+{
+ //determina quadrante
+  switch (quadrante){
+    case 1:
+      app.X=(+60);
+      app.Y=(-60);
+      break;
+    case 2:
+      app.X=(-60);
+      app.Y=(-60);
+      break;
+    case 3:
+      app.X=(+60);
+      app.Y=(+60);
+      break;
+    case 4:
+      app.X=(-60);
+      app.Y=(+60);
+      break;
+    default:
+      app.X=(-60);
+      app.Y=(+60);
+      break;
+  }
+  app.Z=100;
+}
+
 void Receita::NumCaixasIndex(void)
 {
   std::vector<Pose> aux_1;

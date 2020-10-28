@@ -56,7 +56,9 @@ int main(int argc, char **argv)
   //std::system("mkdir \"myfolder\"");
   _mkdir("file_in");
   _mkdir("file_out");
-  _mkdir("file_out/INIT");
+  _mkdir("file_out/universal_robot");
+  _mkdir("file_out/KUKA");
+  _mkdir("file_out/KUKA/INIT");
   _mkdir("relatorio");
   _mkdir("simulacao");
 //+------------------------------------------------------------<< 
@@ -89,29 +91,7 @@ int main(int argc, char **argv)
   std::cout << "\n-----------------------------\n" << endl;
 //+------------------------------------------------------------<< 
   //determina quadrante
-  switch (quadrante){
-    case 1:
-      app.X=(+60);
-      app.Y=(-60);
-      break;
-    case 2:
-      app.X=(-60);
-      app.Y=(-60);
-      break;
-    case 3:
-      app.X=(+60);
-      app.Y=(+60);
-      break;
-    case 4:
-      app.X=(-60);
-      app.Y=(+60);
-      break;
-    default:
-      app.X=(-60);
-      app.Y=(+60);
-      break;
-  }
-  app.Z=100;
+  app_quadrante(app,quadrante);
 //+------------------------------------------------------------<< 
   //variaveis
   std::string entrada;

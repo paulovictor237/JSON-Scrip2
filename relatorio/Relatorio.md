@@ -9,11 +9,11 @@ Quadrante: 4 | Pallet: 1
 
 nome: teste2
 maxGrip: 4
-PlacesCamada: 12
+PlacesCamada: 11
 AlturaCaixa: 200
 Camadas: 5
 Layers: 2
-FinalContador: 24
+FinalContador: 22
 quadrante: 4
 
 **Caixa**
@@ -35,30 +35,28 @@ Peso : 0
 
 # >> POSICOES <<
 
-[ 1]{ X 610, Y 130, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[ 2]{ X 610, Y 340, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[ 3]{ X 350, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[ 4]{ X 140, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[ 5]{ X 190, Y 440, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[ 6]{ X 660, Y 710, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[ 7]{ X 450, Y 710, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[ 8]{ X 190, Y 650, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[ 9]{ X 660, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[10]{ X 450, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[11]{ X 190, Y 860, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[12]{ X 190, Y 1070, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[13]{ X 610, Y 130, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[14]{ X 610, Y 340, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[15]{ X 350, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[16]{ X 140, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[17]{ X 610, Y 550, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[18]{ X 350, Y 490, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[19]{ X 140, Y 490, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[20]{ X 610, Y 760, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[21]{ X 660, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[22]{ X 450, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
-[23]{ X 190, Y 860, Z 200, A 90, B 0, C 0, NumCaixas 1 }
-[24]{ X 190, Y 1070, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 1]{ X 610, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
+[ 2]{ X 400, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
+[ 3]{ X 190, Y 180, Z 200, A 0, B 0, C 0, NumCaixas 1 }
+[ 4]{ X 560, Y 440, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 5]{ X 240, Y 440, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 6]{ X 560, Y 650, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 7]{ X 240, Y 650, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 8]{ X 560, Y 860, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[ 9]{ X 240, Y 860, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[10]{ X 560, Y 1070, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[11]{ X 240, Y 1070, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[12]{ X 560, Y 130, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[13]{ X 240, Y 130, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[14]{ X 560, Y 340, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[15]{ X 240, Y 340, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[16]{ X 560, Y 550, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[17]{ X 240, Y 550, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[18]{ X 560, Y 760, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[19]{ X 240, Y 760, Z 200, A 90, B 0, C 0, NumCaixas 1 }
+[20]{ X 610, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
+[21]{ X 400, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
+[22]{ X 190, Y 1020, Z 200, A 0, B 0, C 0, NumCaixas 1 }
 
 -----------------------------
 

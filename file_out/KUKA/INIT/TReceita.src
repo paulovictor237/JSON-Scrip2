@@ -1,0 +1,20 @@
+DEF TReceita()
+;FOLD Produto teste2
+  StrReceita[Prdt_teste2].OffsetProduto.X=0
+  StrReceita[Prdt_teste2].OffsetProduto.Y=0
+  StrReceita[Prdt_teste2].OffsetProduto.Z=0
+  StrReceita[Prdt_teste2].OffsetProduto.A=0
+  StrReceita[Prdt_teste2].OffsetProduto.B=0
+  StrReceita[Prdt_teste2].OffsetProduto.C=0
+  StrReceita[Prdt_teste2].AlturaCaixa=200
+  StrReceita[Prdt_teste2].PlacesCamada=11
+  StrReceita[Prdt_teste2].Layers=2
+  StrReceita[Prdt_teste2].Camadas=5
+  StrReceitaLayer[Prdt_teste2,1]=1
+  StrReceitaLayer[Prdt_teste2,2]=2
+  StrReceitaLayer[Prdt_teste2,3]=1
+  StrReceitaLayer[Prdt_teste2,4]=2
+  StrReceitaLayer[Prdt_teste2,5]=1
+;ENDFOLD
+
+END

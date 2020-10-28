@@ -46,9 +46,9 @@ void ur_pontos(std::ofstream &ur_file,int pallet,int NumPlace,class Receita rece
   endereco << "p[pallet"<<pallet<<"_dx/1000.0,pallet"<<pallet<<"_dy/1000.0,delta_z/1000.0,";
   endereco << "d2r(pallet"<<pallet<<"_rx),d2r(pallet"<<pallet<<"_ry),d2r(pallet"<<pallet<<"_rz)],";
 
-  ur_file<< endereco.str() << ur_pose(XApp1Place) << "),a=acc,v=vel,r=0.000000)" << endl;
-  ur_file<< endereco.str() << ur_pose(XApp2Place) << "),a=acc,v=vel,r=0.000000)" << endl;
-  ur_file<< endereco.str() << ur_pose(XPlace) << "),a=acc,v=vel,r=0.000000)" << endl;
+  ur_file<< endereco.str() << ur_pose(XApp1Place) << "),a=acc,v=vel,r=100.0)" << endl;
+  ur_file<< endereco.str() << ur_pose(XApp2Place) << "),a=acc,v=vel,r=50.0)" << endl;
+  ur_file<< endereco.str() << ur_pose(XPlace)     << "),a=acc,v=vel,r=0.0)" << endl;
 
   return;
 }
@@ -75,6 +75,17 @@ void ur_altera_pontos(class Receita &receita)
       outt.A=0;
       outt.pick_ur=2;
     }
+    //troca de pega
+    if((quadrante==3||quadrante==4)&&(outt.X<(receita.Pallet.width*1/3)))
+    {
+      outt.A=180;
+      outt.AppPalete=2;
+    }
+    if((quadrante==1||quadrante==1)&&(outt.X>(receita.Pallet.width*2/3)))
+    {
+      outt.A=180;
+      outt.AppPalete=2;
+    }
     if(quadrante == 3 || quadrante == 4)
     {
       outt.A=(outt.A+180)>360?outt.A+180-360:outt.A+180;
@@ -86,7 +97,7 @@ int ur_maker(int pallet,class Receita receita,class Pose app)
 {
 //+------------------------------------------------------------<< 
   //abre os arquivos
-  std::ofstream ur_file("file_out/universal_robot.script",std::ofstream::out);
+  std::ofstream ur_file("file_out/universal_robot/universal_robot.script",std::ofstream::out);
   if( !ur_file )
   {
     std::cout << "Erro ao abrir os arquivos ur_file.\n";
@@ -110,7 +121,7 @@ int ur_maker(int pallet,class Receita receita,class Pose app)
     ur_file<<"  # PLACE " << contador << endl;
     ur_file << "  "<<(contador==1?"if":"elif");
     ur_file << "(caixa=="<<contador<<"):" << endl;
-    ur_file << "  App"<<1<<"Palete"<<pallet<<"() #subroutine call" << endl;
+    ur_file << "  App"<<outt.AppPalete<<"Palete"<<pallet<<"() #subroutine call" << endl;
     ur_pontos(ur_file,pallet,contador,receita,outt,app);
     ur_file << "  Deposita() #subroutine call" << endl;
     contador++;
