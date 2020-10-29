@@ -2,6 +2,6 @@
 #define universal_robot_h
 
 void ur_altera_pontos(class Receita &receita);
-int ur_maker(int pallet,class Receita receita,class Pose app);
+int ur_maker(class Pose receita);
 
 #endif

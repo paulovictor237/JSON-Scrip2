@@ -19,7 +19,7 @@ std::string kuka_pose(class Pose pose)
   return aux.str();
 }
 
-void kuka_imprime(std::ofstream &ofs,class Receita receita)
+void kuka_imprime(std::ofstream &ofs,class Receita &receita)
 {
   std::stringstream aux;
   ofs<<";FOLD Produto "    << receita.nome << endl;
@@ -66,7 +66,7 @@ void add_propriedades(std::ofstream &TMatriz_src,std::stringstream &endereco){
 }
 
 
-int kuka_maker(int pallet,class Receita receita,class Pose app)
+int kuka_maker(class Receita &receita)
 {
 //+------------------------------------------------------------<< 
   //abre os arquivos
@@ -97,8 +97,8 @@ int kuka_maker(int pallet,class Receita receita,class Pose app)
   int contador=1;
   // Receita -> int PlacesCamada=0,AlturaCaixa=0,Camadas=0,Layers=0;
   //abre fold da receita
-  TMatriz_src << ";FOLD Pallet " <<pallet<<" - Produto "<< receita.nome << endl;
-  TMatriz_dat << ";FOLD Pallet " <<pallet<<" - Produto "<< receita.nome << endl;
+  TMatriz_src << ";FOLD Pallet " <<receita.NumPallet<<" - Produto "<< receita.nome << endl;
+  TMatriz_dat << ";FOLD Pallet " <<receita.NumPallet<<" - Produto "<< receita.nome << endl;
   //fold layer
   TMatriz_src << ";FOLD LAYER "<<layer<<": PLACE "<<contador << " ate " << receita.PlacesCamada*layer << endl;
   TMatriz_dat << ";FOLD LAYER "<<layer<<": PLACE "<<contador << " ate " << receita.PlacesCamada*layer << endl;
@@ -110,7 +110,7 @@ int kuka_maker(int pallet,class Receita receita,class Pose app)
       separa_layers(TMatriz_src,layer,contador,receita.PlacesCamada*layer);
       separa_layers(TMatriz_dat,layer,contador,receita.PlacesCamada*layer);
     }
-    matriz_pontos(TMatriz_src,TMatriz_dat,pallet,contador,receita,outt,app);
+    matriz_pontos(TMatriz_src,TMatriz_dat,receita.NumPallet,contador,receita,outt,receita.AppPose);
     contador++;
   }
   TMatriz_src<<";ENDFOLD" << endl;
@@ -148,7 +148,7 @@ void separa_layers(std::ofstream &file,int layer,int inicial,int final)
   file << ";FOLD LAYER "<<layer<<": PLACE "<<inicial << " ate " << final << endl;
 }
 
-void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,int pallet,int NumPlace,class Receita receita,class Pose pose,class Pose app)
+void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,class Receita &receita,class Pose pose,int NumPlace)
 {
   class Pose XApp1Place,XApp2Place,XPlace;
   //valor compromisso de engenharia
@@ -156,17 +156,17 @@ void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,int pal
   XPlace=pose;
   //App2
   XApp2Place=pose;
-  XApp2Place.X+=app.X;
-  XApp2Place.Y+=app.Y;
+  XApp2Place.X+=receita.AppPose.X;
+  XApp2Place.Y+=receita.AppPose.Y;
   XApp2Place.Z+=receita.AlturaCaixa/2;
   //App1
   XApp1Place=XApp2Place;
-  XApp1Place.Z+=(receita.AlturaCaixa/2)+app.Z;
+  XApp1Place.Z+=(receita.AlturaCaixa/2)+receita.AppPose.Z;
   //+-------------------------- SRC --------------------------+<<
   std::stringstream endereco;
   endereco.clear(); 
   endereco <<"MatrizPontos[Pallet_";
-  endereco <<pallet<<",Prdt_";
+  endereco <<receita.NumPallet<<",Prdt_";
   endereco <<receita.nome; 
   endereco << "," ;
   endereco << NumPlace;
@@ -175,9 +175,9 @@ void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,int pal
   TMatriz_src<<";FOLD PLACE " << NumPlace << endl;
     TMatriz_src<<";FOLD PROPRIEDADES " << endl;
       add_propriedades(TMatriz_src,endereco);
-      TMatriz_src<< endereco.str() <<"XApp1Place=P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<endl;
-      TMatriz_src<< endereco.str() <<"XApp2Place=P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<endl;
-      TMatriz_src<< endereco.str() <<"XPlace=P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<endl;
+      TMatriz_src<< endereco.str() <<"XApp1Place=P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<endl;
+      TMatriz_src<< endereco.str() <<"XApp2Place=P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<endl;
+      TMatriz_src<< endereco.str() <<"XPlace=P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<endl;
     TMatriz_src << ";ENDFOLD" << endl;
       OffsetPlace(TMatriz_src,endereco);
       TMatriz_src<< endl;
@@ -185,9 +185,9 @@ void matriz_pontos(std::ofstream &TMatriz_src,std::ofstream &TMatriz_dat,int pal
 
   //+-------------------------- DAT --------------------------+<<   
   TMatriz_dat<<";FOLD PLACE " << NumPlace << endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<"="<<kuka_pose(XApp1Place)<<endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<"="<<kuka_pose(XApp2Place)<<endl;
-  TMatriz_dat<<"DECL E6POS P"<<pallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<"="<<kuka_pose(XPlace)<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App1"<<"="<<kuka_pose(XApp1Place)<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"App2"<<"="<<kuka_pose(XApp2Place)<<endl;
+  TMatriz_dat<<"DECL E6POS P"<<receita.NumPallet<<"_"<<receita.nome<<"_"<<NumPlace<<"_"<<"Place"<<"="<<kuka_pose(XPlace)<<endl;
   TMatriz_dat<<";ENDFOLD\n" << endl; 
 
   return;

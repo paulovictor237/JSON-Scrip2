@@ -12,7 +12,7 @@ using namespace std;
 #include "comum.h"
 #include "simulacao.h"
 
-int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
+int simulacao_maker(class Receita &receita,string name)
 {
   std::ofstream simulacao_src("simulacao/"+name+".src",std::ofstream::out);
   std::ofstream simulacao_dat("simulacao/"+name+".dat",std::ofstream::out);
@@ -36,12 +36,12 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
     j++;
     //App2
     XApp2Place=XPlace;
-    XApp2Place.X+=app.X;
-    XApp2Place.Y+=app.Y;
+    XApp2Place.X+=receita.AppPose.X;
+    XApp2Place.Y+=receita.AppPose.Y;
     XApp2Place.Z+=receita.AlturaCaixa/2;
     //App1
     XApp1Place=XApp2Place;
-    XApp1Place.Z+=receita.AlturaCaixa/2+app.Y;
+    XApp1Place.Z+=receita.AlturaCaixa/2+receita.AppPose.Y;
     simulacao_src << endl;
     simulacao_src << ";FOLD ; ## PontoPlace ["<<j<<"] ##;%{PE}%R 8.5.16,%MKUKATPBASIS,\%CCOMMENT,%VNORMAL,%P 2: ## PontoPlace ["<<j<<"] ## \n;ENDFOLD" << endl;
     simulacao_src << "add()"<< endl;
@@ -50,14 +50,14 @@ int simulacao_maker(int pallet,class Receita receita,class Pose app,string name)
     if(name=="universal_robot")
     {
       simulacao_src << "pick"<<outt.pick_ur<<"()"<< endl;
-      simulacao_src << "App"<<outt.AppPalete<<"Palete"<<pallet<<"()"<< endl;
+      simulacao_src << "receita.AppPose"<<outt.AppPalete<<"Palete"<<receita.NumPallet<<"()"<< endl;
     }
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,pallet,false);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp1Place,receita.NumPallet,false);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,pallet,false);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XApp2Place,receita.NumPallet,false);
     i++;
-    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,pallet,false);
+    simulacao_ponto(simulacao_src,simulacao_dat,i+20,XPlace,receita.NumPallet,false);
     simulacao_src << "place()"<< endl;
   }
   end_files(simulacao_src,simulacao_dat);

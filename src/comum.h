@@ -21,13 +21,15 @@ class Receita{
 public:
   std::string nome;
   int PlacesCamada=0,AlturaCaixa=0,Camadas=0,Layers=0,FinalContador=0,maxGrip=0;
-  int quadrante=4;
+  int NumPallet=1,Lado=1,AppDirecao=4,Quadrante=4;
+  class Pose AppPose;
   class Objeto Pallet,Caixa;
   std::vector<Pose> all_poses;
   std::vector <int> LayersVector;
 public:
-  void quadrante_vector(int quadrante);
+  void AppPose_maker(void);
   void NumCaixasIndex(void);
+  void quadrante_maker(void);
   void inverte_linha(void);
   void inverte_coluna(void);
   void inverte_tudo(void);
@@ -37,7 +39,6 @@ public:
 std::string split_string(std::string tokenString,std::string delim,int saida);
 vector<string> split_string(std::string tokenString,std::string delim);
 void imprime_vetor(vector<string> tokens);
-void app_quadrante(class Pose &app,int quadrante);
 
 double valor(std::string entrada,int retorno);
 bool buscar_chave(std::string entrada,std::string chave);

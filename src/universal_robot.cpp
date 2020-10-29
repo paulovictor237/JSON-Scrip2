@@ -24,7 +24,7 @@ std::string ur_pose(class Pose pose)
   return aux.str();
 }
 
-void ur_pontos(std::ofstream &ur_file,int pallet,int NumPlace,class Receita receita,class Pose pose,class Pose app)
+void ur_pontos(std::ofstream &ur_file,class Receita &receita,class Pose pose)
 {
   class Pose XApp1Place,XApp2Place,XPlace;
   //valor compromisso de engenharia
@@ -32,19 +32,19 @@ void ur_pontos(std::ofstream &ur_file,int pallet,int NumPlace,class Receita rece
   XPlace=pose;
   //App2
   XApp2Place=pose;
-  XApp2Place.X+=app.X;
-  XApp2Place.Y+=app.Y;
+  XApp2Place.X+=receita.AppPose.X;
+  XApp2Place.Y+=receita.AppPose.Y;
   XApp2Place.Z+=receita.AlturaCaixa/2;
   //App1
   XApp1Place=XApp2Place;
-  XApp1Place.Z+=(receita.AlturaCaixa/2)+app.Z;
+  XApp1Place.Z+=(receita.AlturaCaixa/2)+receita.AppPose.Z;
   //+-------------------------- SRC --------------------------+<<
   std::stringstream endereco;
   endereco.clear(); 
 
   endereco << "  movel(pose_trans(";
-  endereco << "p[pallet"<<pallet<<"_dx/1000.0,pallet"<<pallet<<"_dy/1000.0,delta_z/1000.0,";
-  endereco << "d2r(pallet"<<pallet<<"_rx),d2r(pallet"<<pallet<<"_ry),d2r(pallet"<<pallet<<"_rz)],";
+  endereco << "p[receita.NumPallet"<<receita.NumPallet<<"_dx/1000.0,receita.NumPallet"<<receita.NumPallet<<"_dy/1000.0,delta_z/1000.0,";
+  endereco << "d2r(receita.NumPallet"<<receita.NumPallet<<"_rx),d2r(receita.NumPallet"<<receita.NumPallet<<"_ry),d2r(receita.NumPallet"<<receita.NumPallet<<"_rz)],";
 
   ur_file<< endereco.str() << ur_pose(XApp1Place) << "),a=acc,v=vel,r=100.0)" << endl;
   ur_file<< endereco.str() << ur_pose(XApp2Place) << "),a=acc,v=vel,r=50.0)" << endl;
@@ -54,20 +54,20 @@ void ur_pontos(std::ofstream &ur_file,int pallet,int NumPlace,class Receita rece
 }
 
 
-void ur_separa_layers(std::ofstream &ur_file,int layer,int inicial,int final,int pallet)
+void ur_separa_layers(std::ofstream &ur_file,int layer,int inicial,int final,int receita.NumPallet)
 {
   ur_file << "\nend\n" << endl;
   ur_file << "sync()\n" << endl;
-  ur_file << "end #P"<<pallet<<"L"<<layer-1<<"\n"<< endl;
+  ur_file << "end #P"<<receita.NumPallet<<"L"<<layer-1<<"\n"<< endl;
   ur_file << endl;
   ur_file << "# LAYER "<<layer<<": PLACE "<<inicial << " ate " << final << endl;
-  ur_file << "def P"<<pallet<<"L"<<layer<<"(caixa):"<<endl;
+  ur_file << "def P"<<receita.NumPallet<<"L"<<layer<<"(caixa):"<<endl;
 
 }
 
 void ur_altera_pontos(class Receita &receita)
 {
-  int quadrante=receita.quadrante;
+  int Lado=receita.Lado;
   for (auto &outt:receita.all_poses)
   {
     if(outt.A==90)
@@ -76,24 +76,20 @@ void ur_altera_pontos(class Receita &receita)
       outt.pick_ur=2;
     }
     //troca de pega
-    if((quadrante==3||quadrante==4)&&(outt.X<(receita.Pallet.width*1/3)))
+    if( (Lado==1) && (outt.X>(receita.Pallet.width*2/3)) ||
+        (Lado==2) && (outt.X<(receita.Pallet.width*1/3)) )
     {
       outt.A=180;
       outt.AppPalete=2;
     }
-    if((quadrante==1||quadrante==1)&&(outt.X>(receita.Pallet.width*2/3)))
-    {
-      outt.A=180;
-      outt.AppPalete=2;
-    }
-    if(quadrante == 3 || quadrante == 4)
+    if(Lado==2)
     {
       outt.A=(outt.A+180)>360?outt.A+180-360:outt.A+180;
     }
   }
 }
 
-int ur_maker(int pallet,class Receita receita,class Pose app)
+int ur_maker(class Receita &receita)
 {
 //+------------------------------------------------------------<< 
   //abre os arquivos
@@ -109,27 +105,27 @@ int ur_maker(int pallet,class Receita receita,class Pose app)
   //init_files(TReceita_src,TReceita_dat,"TReceita");
 
   ur_file << "# LAYER "<<layer<<": PLACE "<<contador << " ate " << receita.PlacesCamada*layer << endl;
-  ur_file << "def P"<<pallet<<"L"<<layer<<"(caixa):"<< endl;
+  ur_file << "def P"<<receita.NumPallet<<"L"<<layer<<"(caixa):"<< endl;
 
   for (auto &outt : receita.all_poses){
     if (contador==(receita.PlacesCamada*layer+1)&& receita.Layers>1)
     {
       layer++;
       contador=1;
-      ur_separa_layers(ur_file,layer,contador,receita.PlacesCamada,pallet);
+      ur_separa_layers(ur_file,layer,contador,receita.PlacesCamada,receita.NumPallet);
     }
     ur_file<<"  # PLACE " << contador << endl;
     ur_file << "  "<<(contador==1?"if":"elif");
     ur_file << "(caixa=="<<contador<<"):" << endl;
-    ur_file << "  App"<<outt.AppPalete<<"Palete"<<pallet<<"() #subroutine call" << endl;
-    ur_pontos(ur_file,pallet,contador,receita,outt,app);
+    ur_file << "  receita.AppPose"<<outt.AppPalete<<"Palete"<<receita.NumPallet<<"() #subroutine call" << endl;
+    ur_pontos(ur_file,receita.NumPallet,contador,receita,outt,receita.AppPose);
     ur_file << "  Deposita() #subroutine call" << endl;
     contador++;
   }
 
   ur_file << "\nend\n" << endl;
   ur_file << "sync()\n" << endl;
-  ur_file << "end #P"<<pallet<<"L"<<layer<<"\n"<< endl;
+  ur_file << "end #P"<<receita.NumPallet<<"L"<<layer<<"\n"<< endl;
   //end_files(TReceita_src,TReceita_dat);
   ur_file.close();
 }

@@ -13,32 +13,32 @@ using namespace std;
 
 bool Pose::operator==(const Pose &rhs) const { return this->X == rhs.X;}
 
-void app_quadrante(class Pose &app,int quadrante)
+void Receita::AppPose_maker(void)
 {
- //determina quadrante
-  switch (quadrante){
+ //determina Quadrante
+  switch (AppDirecao){
     case 1:
-      app.X=(+60);
-      app.Y=(-60);
+      AppPose.X=(+60);
+      AppPose.Y=(-60);
       break;
     case 2:
-      app.X=(-60);
-      app.Y=(-60);
+      AppPose.X=(-60);
+      AppPose.Y=(-60);
       break;
     case 3:
-      app.X=(+60);
-      app.Y=(+60);
+      AppPose.X=(+60);
+      AppPose.Y=(+60);
       break;
     case 4:
-      app.X=(-60);
-      app.Y=(+60);
+      AppPose.X=(-60);
+      AppPose.Y=(+60);
       break;
     default:
-      app.X=(-60);
-      app.Y=(+60);
+      AppPose.X=(-60);
+      AppPose.Y=(+60);
       break;
   }
-  app.Z=100;
+  AppPose.Z=100;
 }
 
 void Receita::NumCaixasIndex(void)
@@ -144,9 +144,9 @@ void Receita::inverte_linha(void)
 }
 
 
-void Receita::quadrante_vector(int quadrante)
+void Receita::quadrante_maker(void)
 {
-  switch (quadrante){
+  switch (Quadrante){
     case 1:
       //inverte_linha();
       //inverte_coluna();
@@ -262,7 +262,10 @@ std::ostream &operator<<(std::ostream &os, Receita const &m)
   os << "Camadas: " << m.Camadas << endl;
   os << "Layers: " << m.Layers << endl;
   os << "FinalContador: " << m.FinalContador << endl;
-  os << "quadrante: " << m.quadrante << endl;
+  os << "NumPallet" << receita.NumPallet << endl;
+  os << "Lado" << receita.Lado << endl;
+  os << "AppDirecao" << receita.AppDirecao << endl;
+  os << "Quadrante" << receita.Quadrante << endl;
   os << "\n**Caixa**\n" << m.Caixa << endl;
   os << "\n**Pallet**\n" << m.Pallet << endl;
   os << "\n**LayersVector**\n";

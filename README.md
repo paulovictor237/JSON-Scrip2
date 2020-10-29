@@ -1,18 +1,27 @@
-# Como usar o Script
+# file_in
 
-1. Na pasta "file_in" cole na pasta o arquivo "My_Job.json"
-2. Configure o arquivo PROPRIEDADES com os dados de ponto
-1. Após a execução, os arquivos serão gerados na pasta "file_out"
-2. Na pasta "relatorio" será gerado o relatório da execução do script.
-
-# Executando o Script
-1. Abra o arquivo "JSON-Scrip2.exe" para começar a execução.
-2. Será requisitado o número do Pallet. Ex:[Pallet_1....Pallet_20]
-3. O segundo parâmetro é o Quadrante [1...4] , a imagem de quadrantes pode ajudar a determinar.
+1. Na pasta "file_in" cole o arquivo "My_Job.json".
+2. Configure o arquivo "config.md".
+3. Configure o arquivo "PROPRIEDADES.md "com os dados de ponto para o KUKA.
 
 # file_out
 
-1. file_out/INT: arquivos que devem ser importados para o programa principal
-2. relatório: relatório de saída do script, aqui são acusado os erros de leitura, confira sempre antes de utilizar os dados INIT.
-3. simulação: pontos extraídos para usar em uma simulação.
+1. Após a execução, os arquivos serão gerados na pasta "file_out".
+2. Na pasta "relatorio" será gerado o relatório da execução do script. Aqui são acusado os erros de leitura, confira sempre antes de utilizar os dados.
+3. Em "simulação" será gerada os pontos para importar nas simulações.
+
+# Configurando o config.md
+
+A imagem config.png irá auxiliar como determinar os parâmetros a seguir.
+
+1. Pallet[1..20] = Número da base do Pallet.
+2. Lado[1/2] = Lado em que o pallet está em relação ao robô (1 esquerda/2 direita)(vista atrás do robô).
+3. AppDirecao[1..4] = Direção de aproximação das caixas.
+4. Quadrante[1..4] = Determina a ordem das caixas (da esquerda para a direita, de baixo para cima).
+
+# Executando o Script
+
+1. Abra o arquivo "JSON-Scrip2.exe" e aguarde a execução.
+2. Os arquivos serão gerados automaticamente.
+3. FIM.
 

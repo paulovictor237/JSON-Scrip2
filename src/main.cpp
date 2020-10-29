@@ -27,6 +27,13 @@ using namespace std;
 #include "kuka.h"
 #include "universal_robot.h"
 
+void error(string name)
+{
+  std::cout << "Erro em: " << name << endl;
+  std::system("pause");
+  exit( 3 );
+}
+
 int main(int argc, char **argv)
 {
 //+------------------------------------------------------------<< 
@@ -36,19 +43,11 @@ int main(int argc, char **argv)
 //+------------------------------------------------------------<< 
   //lê o arquivo
   std::ifstream file_in("file_in/My_Job.json");
-  if( !file_in )
-  {
-    std::cout << "Erro ao abrir os arquivos My_Job.\n";
-    std::system("pause");
-    return 0;
-  }
+  if(!file_in)error("My_Job");
+  std::ifstream config("file_in/config.md");
+  if(!config)error("config");
   std::ifstream PROPRIEDADES("file_in/PROPRIEDADES.md");
-  if( !PROPRIEDADES)
-  {
-    std::cout << "Erro ao abrir os arquivos PROPRIEDADES.\n";
-    std::system("pause");
-    return 0;
-  }
+  if(!PROPRIEDADES)error("PROPRIEDADES");
   PROPRIEDADES.close();
 //+------------------------------------------------------------<<
   //criar os diretorios
@@ -63,44 +62,35 @@ int main(int argc, char **argv)
   _mkdir("simulacao");
 //+------------------------------------------------------------<< 
   //configuracoes de inicializacao
-  int pallet=1;
-  int quadrante=3;
-  class Pose app;
-  //Quadrante e Pallet
-  int system_in;
-  std::cout << "Digite o valor do Pallet [1..20]" << endl;
-  cin  >> system_in;
-  pallet = system_in;
-  if(pallet<0||pallet>20){
-    cout << "valor invalido de pallet" << endl;
-    std::system("pause");
-    return 0;
-  }
-  std::cout << "Digite o valor do quadrante [1..4]" << endl;
-  cin  >> system_in;
-  quadrante = system_in;
-  if(quadrante<1||quadrante>4){
-    cout << "valor invalido de quadrante" << endl;
-    std::system("pause");
-    return 0;
-  }
+  std::string entrada;
+  class Receita receita;
+  getline(config,entrada);
+  receita.NumPallet=split_string(entrada,"[=]+",1);
+  if(NumPallet<1||NumPallet>20)error("NumPallet");
+  getline(config,entrada);
+  receita.Lado=split_string(entrada,"[=]+",1);
+  if(Lado!=1&&Lado!=2)error("Lado");
+  getline(config,entrada);
+  receita.AppDirecao=split_string(entrada,"[=]+",1);
+  if(AppDirecao<1||AppDirecao>4)error("AppDirecao");
+  getline(config,entrada);
+  receita.Quadrante=split_string(entrada,"[=]+",1);
+  if(Quadrante<1||Quadrante>4)error("Quadrante");
+  config.close();
 //+------------------------------------------------------------<< 
   std::cout << "\n-----------------------------\n" << endl;
   std::cout << "$ >> OPCOES << $\n"<< endl;
-  std::cout << "Quadrante: " << quadrante << " | " << "Pallet: " << pallet << endl;
+  std::cout << "NumPallet" << receita.NumPallet << endl;
+  std::cout << "Lado" << receita.Lado << endl;
+  std::cout << "AppDirecao" << receita.AppDirecao << endl;
+  std::cout << "Quadrante" << receita.Quadrante << endl;
   std::cout << "\n-----------------------------\n" << endl;
 //+------------------------------------------------------------<< 
-  //determina quadrante
-  app_quadrante(app,quadrante);
-//+------------------------------------------------------------<< 
   //variaveis
-  std::string entrada;
   int NumPontos=0;
   int NumLayers=0;
   bool aux_name=false;
-
   class Pose pose_aux;
-  class Receita receita;
 //+------------------------------------------------------------<<
   //faz a coleta dos dados
   while (!file_in.eof())
@@ -188,27 +178,25 @@ int main(int argc, char **argv)
   std::cout.rdbuf(Relatorio.rdbuf()); //redirect std::cout to out.txt!
   //+------------------------------------------------------------<< 
   std::cout << "# $ >> PROGRAMA INICIADO << $"<<endl;
-  std::cout << "# >> OPCOES <<\n"<< endl;
-  std::cout << "Quadrante: " << quadrante << " | " << "Pallet: " << pallet << endl;
-  std::cout << "\n-----------------------------\n" << endl;
 //+------------------------------------------------------------<< 
   //preenche a receita
-  receita.quadrante=quadrante;
+  receita.Quadrante=Quadrante;
   receita.FinalContador=NumPontos;
   receita.PlacesCamada=NumPontos/NumLayers;
   receita.AlturaCaixa=receita.Caixa.height;
   receita.Camadas=receita.LayersVector.size();
   receita.Layers=NumLayers;
   //receita.NumCaixasIndex();
-  receita.quadrante_vector(quadrante);
+  receita.AppPose_maker();
+  receita.quadrante_maker();
   std::cout << receita << endl;
 //+------------------------------------------------------------<< 
   // distribui as informações aos arquivos 
-  kuka_maker(pallet,receita,app);
-  simulacao_maker(pallet,receita,app,"kuka");
+  kuka_maker(receita);
+  simulacao_maker(receita,"kuka");
   ur_altera_pontos(receita);
-  ur_maker(pallet,receita,app);
-  simulacao_maker(pallet,receita,app,"universal_robot");
+  ur_maker(receita);
+  simulacao_maker(receita,"universal_robot");
 //+------------------------------------------------------------<< 
   file_in.close();
   //Relatorio.close();
