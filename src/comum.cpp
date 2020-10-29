@@ -262,10 +262,10 @@ std::ostream &operator<<(std::ostream &os, Receita const &m)
   os << "Camadas: " << m.Camadas << endl;
   os << "Layers: " << m.Layers << endl;
   os << "FinalContador: " << m.FinalContador << endl;
-  os << "NumPallet" << receita.NumPallet << endl;
-  os << "Lado" << receita.Lado << endl;
-  os << "AppDirecao" << receita.AppDirecao << endl;
-  os << "Quadrante" << receita.Quadrante << endl;
+  os << "NumPallet: " << m.NumPallet << endl;
+  os << "Lado: " << m.Lado << endl;
+  os << "AppDirecao: " << m.AppDirecao << endl;
+  os << "Quadrante: " << m.Quadrante << endl;
   os << "\n**Caixa**\n" << m.Caixa << endl;
   os << "\n**Pallet**\n" << m.Pallet << endl;
   os << "\n**LayersVector**\n";

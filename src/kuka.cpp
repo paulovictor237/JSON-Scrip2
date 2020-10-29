@@ -7,10 +7,11 @@
 #include <string>
 #include <vector>
 #include <regex>
+
 using namespace std;
 
 #include "comum.h"
-# include "kuka.h"
+#include "kuka.h"
 
 std::string kuka_pose(class Pose pose)
 {
@@ -110,7 +111,8 @@ int kuka_maker(class Receita &receita)
       separa_layers(TMatriz_src,layer,contador,receita.PlacesCamada*layer);
       separa_layers(TMatriz_dat,layer,contador,receita.PlacesCamada*layer);
     }
-    matriz_pontos(TMatriz_src,TMatriz_dat,receita.NumPallet,contador,receita,outt,receita.AppPose);
+    matriz_pontos(TMatriz_src, TMatriz_dat, receita, outt, contador);
+
     contador++;
   }
   TMatriz_src<<";ENDFOLD" << endl;

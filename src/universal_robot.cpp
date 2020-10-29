@@ -54,7 +54,7 @@ void ur_pontos(std::ofstream &ur_file,class Receita &receita,class Pose pose)
 }
 
 
-void ur_separa_layers(std::ofstream &ur_file,int layer,int inicial,int final,int receita.NumPallet)
+void ur_separa_layers(std::ofstream &ur_file,int layer,int inicial,int final,class Receita receita)
 {
   ur_file << "\nend\n" << endl;
   ur_file << "sync()\n" << endl;
@@ -65,7 +65,7 @@ void ur_separa_layers(std::ofstream &ur_file,int layer,int inicial,int final,int
 
 }
 
-void ur_altera_pontos(class Receita &receita)
+void ur_altera_pontos(class Receita & receita)
 {
   int Lado=receita.Lado;
   for (auto &outt:receita.all_poses)
@@ -89,7 +89,7 @@ void ur_altera_pontos(class Receita &receita)
   }
 }
 
-int ur_maker(class Receita &receita)
+int ur_maker(class Receita & receita)
 {
 //+------------------------------------------------------------<< 
   //abre os arquivos
@@ -112,13 +112,13 @@ int ur_maker(class Receita &receita)
     {
       layer++;
       contador=1;
-      ur_separa_layers(ur_file,layer,contador,receita.PlacesCamada,receita.NumPallet);
+      ur_separa_layers(ur_file, layer, contador, receita.PlacesCamada, receita);
     }
     ur_file<<"  # PLACE " << contador << endl;
     ur_file << "  "<<(contador==1?"if":"elif");
     ur_file << "(caixa=="<<contador<<"):" << endl;
     ur_file << "  receita.AppPose"<<outt.AppPalete<<"Palete"<<receita.NumPallet<<"() #subroutine call" << endl;
-    ur_pontos(ur_file,receita.NumPallet,contador,receita,outt,receita.AppPose);
+    ur_pontos(ur_file, receita, outt);
     ur_file << "  Deposita() #subroutine call" << endl;
     contador++;
   }

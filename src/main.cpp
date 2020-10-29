@@ -65,25 +65,25 @@ int main(int argc, char **argv)
   std::string entrada;
   class Receita receita;
   getline(config,entrada);
-  receita.NumPallet=split_string(entrada,"[=]+",1);
-  if(NumPallet<1||NumPallet>20)error("NumPallet");
+  receita.NumPallet=stoi(split_string(entrada,"[= ]+",1));
+  if(receita.NumPallet<1|| receita.NumPallet>20)error("NumPallet");
   getline(config,entrada);
-  receita.Lado=split_string(entrada,"[=]+",1);
-  if(Lado!=1&&Lado!=2)error("Lado");
+  receita.Lado=stoi(split_string(entrada,"[= ]+",1));
+  if(receita.Lado!=1&& receita.Lado!=2)error("Lado");
   getline(config,entrada);
-  receita.AppDirecao=split_string(entrada,"[=]+",1);
-  if(AppDirecao<1||AppDirecao>4)error("AppDirecao");
+  receita.AppDirecao=stoi(split_string(entrada,"[= ]+",1));
+  if(receita.AppDirecao<1|| receita.AppDirecao>4)error("AppDirecao");
   getline(config,entrada);
-  receita.Quadrante=split_string(entrada,"[=]+",1);
-  if(Quadrante<1||Quadrante>4)error("Quadrante");
+  receita.Quadrante=stoi(split_string(entrada,"[= ]+",1));
+  if(receita.Quadrante<1|| receita.Quadrante>4)error("Quadrante");
   config.close();
 //+------------------------------------------------------------<< 
   std::cout << "\n-----------------------------\n" << endl;
   std::cout << "$ >> OPCOES << $\n"<< endl;
-  std::cout << "NumPallet" << receita.NumPallet << endl;
-  std::cout << "Lado" << receita.Lado << endl;
-  std::cout << "AppDirecao" << receita.AppDirecao << endl;
-  std::cout << "Quadrante" << receita.Quadrante << endl;
+  std::cout << "NumPallet = " << receita.NumPallet << endl;
+  std::cout << "Lado = " << receita.Lado << endl;
+  std::cout << "AppDirecao = " << receita.AppDirecao << endl;
+  std::cout << "Quadrante = " << receita.Quadrante << endl;
   std::cout << "\n-----------------------------\n" << endl;
 //+------------------------------------------------------------<< 
   //variaveis
@@ -180,7 +180,6 @@ int main(int argc, char **argv)
   std::cout << "# $ >> PROGRAMA INICIADO << $"<<endl;
 //+------------------------------------------------------------<< 
   //preenche a receita
-  receita.Quadrante=Quadrante;
   receita.FinalContador=NumPontos;
   receita.PlacesCamada=NumPontos/NumLayers;
   receita.AlturaCaixa=receita.Caixa.height;

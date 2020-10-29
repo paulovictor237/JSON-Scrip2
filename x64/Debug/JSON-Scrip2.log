@@ -1,3 +1,15 @@
-﻿  simulacao.cpp
-C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\simulacao.cpp(46,52): warning C4129: '%': sequência de escape de caractere não reconhecida
+﻿  comum.cpp
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\comum.cpp(48,35): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\comum.cpp(88,35): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\comum.cpp(121,35): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+  main.cpp
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(109,30): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(140,45): warning C4244: 'argumento': conversão de 'double' para '_Ty', possível perda de dados
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(185,36): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+C:\Users\paulo.duarte\source\repos\JSON-Scrip2\src\main.cpp(186,46): warning C4267: '=': conversão de 'size_t' para 'int', possível perda de dados
+  Gerando Código...
   JSON-Scrip2.vcxproj -> C:\Users\paulo.duarte\source\repos\JSON-Scrip2\x64\Debug\JSON-Scrip2.exe

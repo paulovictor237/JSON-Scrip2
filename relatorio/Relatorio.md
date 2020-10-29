@@ -1,10 +1,4 @@
 # $ >> PROGRAMA INICIADO << $
-# >> OPCOES <<
-
-Quadrante: 4 | Pallet: 1
-
------------------------------
-
 # >> RECEITA <<
 
 nome: teste2
@@ -14,6 +8,9 @@ AlturaCaixa: 200
 Camadas: 5
 Layers: 2
 FinalContador: 22
+NumPallet: 1
+Lado: 1
+AppDirecao: 4
 Quadrante: 4
 
 **Caixa**
